@@ -183,7 +183,7 @@ def main():
         keep_going = input("Do you wish to continue?")
 
 
-    print("Have a nice day- we have saved your progress.")
+    print("Have a nice day- we have saved your progress~")
     player_export = player.__dict__
     with open("userlist.txt", "w") as json_file:
         json.dump(player_export, json_file)
