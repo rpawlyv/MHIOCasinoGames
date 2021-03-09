@@ -1,0 +1,1 @@
+{"name": "Lil Tops", "balance": 20, "bet_amount": 0}
