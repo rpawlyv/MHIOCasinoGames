@@ -138,15 +138,17 @@ def main():
         user_name = input("What is your name?")
         player = Gambler(user_name.title())
         player.show_stats()
+
+    #Loading stats from .txt file.
     elif welcome_message == "2":
         return_username = input("What is your name?")
-        file_load = open("userlist.txt", "r")
-        dict_load = json.load(file_load)
-        if dict_load["name"] == return_username.title():
-            player = Gambler(dict_load["name"], dict_load["balance"])
+        file_load = open("userlist.txt", "r") #open file in 'read' mode
+        dict_load = json.load(file_load) #This 'converts' the dictionary in the .txt file to be an actual Python Dictionary type
+        if dict_load["name"] == return_username.title(): #If the name they wrote in the input matches with a name in the text file
+            player = Gambler(dict_load["name"], dict_load["balance"]) #Create a new Gambler object and insert the values for their name and balance
         else:
             print("Username not found. Created a new user.")
-            player = Gambler(return_username.title(), balance=1000)
+            player = Gambler(return_username.title(), balance=1000) #initializing a Gambler with the users name and 1000 to start with.
 
 
     player.show_stats()
@@ -182,11 +184,13 @@ def main():
 
         keep_going = input("Do you wish to continue?")
 
-
+    #Dumping player data into .txt file.#
     print("Have a nice day- we have saved your progress.")
-    player_export = player.__dict__
-    with open("userlist.txt", "w") as json_file:
-        json.dump(player_export, json_file)
+    
+    #Classes have special functions you can access with double underscores. __dict__ creates a dictionary of all the objects attributes and values
+    player_export = player.__dict__ 
+    with open("userlist.txt", "w") as json_file: #"w" is write mode so the text file is ready to be overwritten
+        json.dump(player_export, json_file) #json is a special format to store data in (basically a dictionary that all languages support)
 
 
 main()
